@@ -6,10 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="keywords" content="" />
+    @yield('headers')
 
-    <link href="http://localhost/laravel-projects/myblog/public_html/assets/css/bootstrap.css" rel='stylesheet' type='text/css' />
-    <link href="http://localhost/laravel-projects/myblog/public_html/assets/css/style.css" rel='stylesheet' type='text/css' />
-    <script src="http://localhost/laravel-projects/myblog/public_html/assets/js/jquery.min.js"></script>
+    <link href="{{URL::to('assets/css/bootstrap.css')}}" rel='stylesheet' type='text/css' />
+    <link href="{{URL::to('assets/css/style.css')}}" rel='stylesheet' type='text/css' />
+    <script src="{{URL::to('http://localhost/laravel-projects/myblog/public_html/assets/js/jquery.min.js')}}"></script>
 
     @yield('styles')
 
@@ -33,14 +34,14 @@
             <div class="navigation">
                 <span class="menu"></span>
                 <ul class="navig">
-                    <li><a href="{{route('admin.home')}}"  class="active">Home</a></li>
-                    <li><a href="">Posts</a></li>
-                    <li><a href="{{route('admin.newPost')}}">New Post</a></li>
-                    <li><a href="http://localhost/laravel-projects/myblog/public_html/contact">Messages</a></li>
+                    <li><a href="{{route('admin.getHome')}}"  class="active">Home</a></li>
+                    <li><a href="{{route('admin.archive')}}">All Posts</a></li>
+                    <li><a href="{{route('admin.getNewPost')}}">New Post</a></li>
+                    <li><a href="{{route('admin.getMessages')}}">Messages</a></li>
                 </ul>
             </div>
             <div class="header-right">
-                Welcome admin!
+                <a href="{{route('admin.logout')}}"><button class="btn btn-primary">Logout</button></a>
             </div>
             <div class="clearfix"></div>
         </div>

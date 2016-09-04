@@ -1,4 +1,4 @@
-@extends('blog.layouts.master')
+@extends('blog.layouts.admin-master')
 
 @section('styles')
     <style>
@@ -8,7 +8,7 @@
         }
 
         .well {
-            background-color: whitesmoke;
+            background-color: whitesmoke
             font-family: Raleway-Regular;
         }
 
@@ -22,7 +22,7 @@
         }
 
         .subtitle {
-            font-size: 70%;
+            font-size: 70%
         }
 
         .post-title {
@@ -57,16 +57,14 @@
                             </div>
 
                             <div class="col-sm-6 about-right">
-                                <span>{{$post->created_at->toFormattedDateString()}}</span>
+                                {{$post->created_at->toFormattedDateString()}}</span>
                             </div>
 
                         </div>
                         <div class="content col-sm-12">
                             <p>{!! strip_tags($post->content) !!}</p>
                         </div>
-
-                        <a href="{{URL::route('getPosts',$post->id)}}"><button class="read-btn btn btn-danger">Read</button></a>
-                        <br>
+                        <a href="{{URL::route('admin.getEditPost',$post->id)}}"><button class="read-btn btn btn-danger">Edit</button></a>
                     </article>
                 @endforeach
                 @if($posts->lastPage() > 1)

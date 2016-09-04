@@ -4,6 +4,6 @@
     <p><b>Shashank Singh</b></p>
     <p>A Computer Science student, a web developer, linux lover, technology enthusiast, philosopher and a disciple</p>
     <div class="a-btn">
-        <a href="{{route('about')}}">Read More</a>
+        <a href="{{route('getAbout')}}">Read More</a>
     </div>
 </div>

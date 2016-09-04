@@ -35,14 +35,18 @@
                         <form method="POST" action="{{route('postContact')}}">
                             <div class="row col-sm-12">
                                 <input placeholder="Name" type="text" name="name" required>
-                                <input placeholder="Email" type="text" name="email" required>
+
                             </div>
                             <div class="row col-sm-12">
-                                <input style="width: 100%;" placeholder="About Yourself(optional)" type="text"
+                                <input placeholder="Email" type="text" name="email" required>
+
+                            </div>
+                            <div class="row col-sm-12">
+                                <input placeholder="About Yourself(optional)" type="text"
                                        name="about">
                             </div>
                             <div class="row col-sm-12">
-                                <textarea placeholder="Message" name="message" required></textarea>
+                                <textarea placeholder="Message" name="content" required></textarea>
                             </div>
                             <div class="submit-btn">
                                     <input type="submit" value="SUBMIT">

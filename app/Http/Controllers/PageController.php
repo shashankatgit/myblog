@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Author;
 use App\Post;
 use Illuminate\Http\Request;
 
@@ -11,8 +12,14 @@ class PageController extends Controller
 {
     public function getHomePage()
     {
-
-        return view('blog.home');
+        $top_post = Post::orderBy('id', 'desc')->first();
+        $id = $top_post->id;
+        $title = $top_post->title;
+        $author = Author::findOrFail($top_post->author_id);
+        $author_name = $author->name;
+        $content = $top_post->content;
+        $time = $top_post->created_at;
+        return view('blog.home', compact('id','title','author_name','content','time'));
     }
 
 
@@ -25,11 +32,7 @@ class PageController extends Controller
     {
         return view('blog.contact');
     }
-
-    public function postContactPage(Request $request)
-    {
-
-    }
+    
 
     public function getArchivePage()
     {
@@ -50,4 +53,6 @@ class PageController extends Controller
         }
         return $text;
     }
+    
+    
 }

@@ -12,43 +12,68 @@
 */
 
 Route::get('/', [
-   'as' => 'home',
+   'as' => 'getHome',
     'uses'=>'PageController@getHomePage'
 ]);
 
 Route::get('/about',[
-    'as'=>'about',
+    'as'=>'getAbout',
     'uses'=>'PageController@getAboutPage'
 ]);
 
 Route::get('/contact',[
-    'as'=>'contact',
+    'as'=>'getContact',
     'uses'=>'PageController@getContactPage'
 ]);
 
 Route::post('contact',[
    'as'=>'postContact',
-    'uses'=>'PageController@postContactPage'
+    'uses'=>'MessagesController@postMessage'
 ]);
 
 Route::get('archive',[
-   'as'=>'archive',
+   'as'=>'getArchive',
     'uses'=>'PageController@getArchivePage'
+]);
+
+Route::get('posts/{id}',[
+   'as'=>'getPosts',
+    'uses'=>'PostsController@getPost'
 ]);
 
 
 
 
 
-Route::group(['prefix'=>'admin'],function (){
+Route::get('admin',[
+    'uses'=>'AdminPagesController@getLoginPage',
+    'as'=>'getAdminLogin'
+]);
+
+Route::post('admin',[
+   'uses'=>'AdminPagesController@postLogin',
+    'as'=>'postAdminLogin'
+]);
+
+Route::group(['prefix'=>'admin','middleware'=>['auth']],function (){
    
     Route::get('/home',[
-       'as' => 'admin.home',
+       'as' => 'admin.getHome',
         'uses' => 'AdminPagesController@getHome'
     ]);
 
+    Route::get('/posts/{id}',[
+        'as'=>'admin.getPosts',
+        'uses'=>'AdminPagesController@getPost'
+    ]);
+
+    Route::get('/archive',[
+        'as'=>'admin.archive',
+        'uses'=>'AdminPagesController@getArchivePage'
+    ]);
+
     Route::get('/newPost',[
-        'as'=>'admin.newPost',
+        'as'=>'admin.getNewPost',
         'uses'=>'AdminPagesController@getNewPost'
     ]);
 
@@ -59,8 +84,22 @@ Route::group(['prefix'=>'admin'],function (){
 
 
     Route::get('/editPost/{id}',[
-        'as'=>'admin.editPost',
+        'as'=>'admin.getEditPost',
         'uses'=>'AdminPagesController@getEditPost'
+    ]);
+    Route::post('/editPost',[
+        'as'=>'admin.postEditPost',
+        'uses'=>'AdminPagesController@postEditPost'
+    ]);
+
+    Route::get('/logout',[
+        'as'=>'admin.logout',
+        'uses'=>'AdminPagesController@logout'
+    ]);
+
+    Route::get('/showMessages',[
+        'as'=>'admin.getMessages',
+        'uses'=>'MessagesController@getMessages'
     ]);
     
 });

@@ -38,9 +38,9 @@
 | -------------------------------------------------------------------*/
 
 
-	$_SERVER['DOCUMENT_ROOT'].='/laravel-projects/myblog/public_html/';
+//	$_SERVER['DOCUMENT_ROOT'].='';
 
-	$config['img_path'] = 'posts/images'; // Relative to domain name
+	$config['img_path'] = '/laravel-projects/myblog/public_html/posts/images'; // Relative to domain name
 	$config['upload_path'] = $_SERVER['DOCUMENT_ROOT'].$config['img_path']; // Physical path. [Usually works fine like this]
 
 	
@@ -119,7 +119,7 @@
 | -------------------------------------------------------------------*/
 
 	
-	$config['encrypt_name'] = FALSE;
+	$config['encrypt_name'] = TRUE;
 
 
 /*-------------------------------------------------------------------

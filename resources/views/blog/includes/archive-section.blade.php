@@ -7,8 +7,8 @@
 
     @foreach($archive_posts as $post)
         <li>
-            <a href="">{{$post->title}}</a>
-            <p>{!!\App\Post::shortenText($post->content,20)  !!}</p>
+            <a href="{{URL::route('getPosts',$post->id)}}">{{$post->title}}</a>
+            <p>{!!\App\Post::shortenText(strip_tags($post->content),20)  !!}</p>
         </li>
     @endforeach
 </ul>
