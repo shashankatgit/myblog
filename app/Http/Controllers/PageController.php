@@ -28,6 +28,11 @@ class PageController extends Controller
         return view('blog.about');
     }
 
+    public function getAboutBlogPage()
+    {
+        return view('blog.about');
+    }
+
     public function getContactPage()
     {
         return view('blog.contact');

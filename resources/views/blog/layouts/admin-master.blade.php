@@ -1,6 +1,7 @@
 
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:fb="http://ogp.me/ns/fb#">
 <head>
     <title>Admin - HumbleBeeHive</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -38,6 +39,8 @@
                     <li><a href="{{route('admin.archive')}}">All Posts</a></li>
                     <li><a href="{{route('admin.getNewPost')}}">New Post</a></li>
                     <li><a href="{{route('admin.getMessages')}}">Messages</a></li>
+                    <li><a href="{{route('admin.getTemporaryComments')}}">Approve Comments</a></li>
+                    <li><a href="{{route('admin.getChangePassword')}}">Change Password</a></li>
                 </ul>
             </div>
             <div class="header-right">

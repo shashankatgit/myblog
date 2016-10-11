@@ -18,6 +18,7 @@
                     <li><a href="{{route('getHome')}}" <?php if(Route::current()->getName()=='getHome') echo "class=\"active\"";?>>Home</a></li>
                     <li><a href="{{route('getArchive')}}" <?php if(Route::current()->getName()=='getArchive') echo "class=\"active\"";?>>Archive</a></li>
                     <li><a href="{{route('getAbout')}}" <?php if(Route::current()->getName()=='getAbout') echo "class=\"active\"";?>>About Me</a></li>
+                    <li><a href="{{URL::route('getPosts',1)}}">About the Blog</a></li>
                     <li><a href="{{route('getContact')}}" <?php if(Route::current()->getName()=='getContact') echo "class=\"active\"";?>>Message Me</a></li>
                 </ul>
             </div>

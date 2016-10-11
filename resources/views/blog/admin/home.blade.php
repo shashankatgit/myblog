@@ -21,7 +21,7 @@
         <p>Posted by <a href="#">{{$latestPost->authorName}}</a> on <b>{{$latestPost->created_at->toFormattedDateString()}}</b></p>
         {!! $latestPost->content !!}
         <div class="about-btn">
-            <a href="{{route('admin.getEditPost',1)}}">Edit</a>
+            <a href="{{route('admin.getEditPost',$latestPost->id)}}">Edit</a>
         </div>
         <ul>
             <li><p>Share : </p></li>

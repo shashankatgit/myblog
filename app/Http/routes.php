@@ -12,9 +12,11 @@
 */
 
 Route::get('/', [
-   'as' => 'getHome',
+    'as' => 'getHome',
     'uses'=>'PageController@getHomePage'
 ]);
+
+
 
 Route::get('/about',[
     'as'=>'getAbout',
@@ -41,6 +43,11 @@ Route::get('posts/{id}',[
     'uses'=>'PostsController@getPost'
 ]);
 
+Route::post('addComment',[
+    'as'=>'postAddComment',
+    'uses'=>'CommentController@postAddTemporaryComment'
+]);
+
 
 
 
@@ -54,6 +61,8 @@ Route::post('admin',[
    'uses'=>'AdminPagesController@postLogin',
     'as'=>'postAdminLogin'
 ]);
+
+
 
 Route::group(['prefix'=>'admin','middleware'=>['auth']],function (){
    
@@ -101,5 +110,29 @@ Route::group(['prefix'=>'admin','middleware'=>['auth']],function (){
         'as'=>'admin.getMessages',
         'uses'=>'MessagesController@getMessages'
     ]);
+    
+    Route::get('/changePassword',[
+        'as'=>'admin.getChangePassword',
+        'uses'=>'PasswordController@getPasswordChange'
+    ]);
+    Route::post('/changePassword',[
+        'as'=>'admin.postChangePassword',
+        'uses'=>'PasswordController@postPasswordChange'
+    ]);
+
+    Route::get('/tempComments',[
+        'as'=>'admin.getTemporaryComments',
+        'uses'=>'CommentController@getAdminCommentApproval'
+    ]);
+    Route::post('/addTempComment',[
+        'as'=>'admin.postApproveTemporaryComment',
+        'uses'=>'CommentController@postApproveTemporaryComment'
+    ]);
+    Route::post('/delTempComment',[
+        'as'=>'admin.postDeleteTemporaryComment',
+        'uses'=>'CommentController@postDeleteTemporaryComment'
+    ]);
+
+
     
 });

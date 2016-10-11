@@ -1,9 +1,23 @@
 <?php
 $last_id = \App\Post::orderBy('id', 'desc')->first()->id;
-$random = rand(1, $last_id - 1);
-for ($i = 0; $i < 2; $i++) {
-    $sug_posts[$i] = \App\Post::find($random + $i);
+
+//var_dump($random);
+//var_dump($last_id);
+$sug_posts[0]=null;
+$sug_posts[1]=null;
+while ($sug_posts[0] == null) {
+    $random1 = rand(1, $last_id - 1);
+//    print_r($random1);
+    $sug_posts[0] = \App\Post::find($random1);
 }
+while ($sug_posts[1] == null) {
+    $random2 = rand(1, $last_id - 1);
+//    print_r($random2);
+            if ($random1 != $random2)
+                $sug_posts[1] = \App\Post::find($random2);
+}
+
+
 ?>
 
 @if(Route::currentRouteName()!='getArchive')
@@ -16,7 +30,7 @@ for ($i = 0; $i < 2; $i++) {
             <?php $count = 0;?>
             @foreach($sug_posts as $sug_post)
                 @if($sug_post==null)
-                    @break
+                    @continue
                 @endif
                 <?php $count++; ?>
                 <div class="bottom-post-div col-sm-5 abt-left">

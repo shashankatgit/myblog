@@ -1,6 +1,7 @@
 @extends('blog.layouts.master-only-head')
 
 @section('headers')
+
     <meta property="og:url" content="{{URL::current()}}"/>
     <meta property="og:type" content="article"/>
     <meta property="og:title" content="{{$title}}"/>
@@ -35,27 +36,51 @@
                 </div>
 
                 <br><br>
-                {{--<div class="comment-bottom heading">--}}
-                    {{--<h3>Leave a Comment (Not Working)</h3>--}}
-                    {{--<form method="POST" action="">--}}
-                        {{--<input type="text" value="Your Name" required="" onfocus="this.value='';"--}}
-                               {{--onblur="if (this.value == '') {this.value ='Your Name';}">--}}
-                        {{--<textarea required="" rows="3" value=" " onfocus="this.value='';"--}}
-                                  {{--onblur="if (this.value == '') {this.value = 'Your Comment';}">Your Comment--}}
-                        {{--</textarea>--}}
-                        {{--<input class="left" type="submit" value="Send">--}}
-                    {{--</form>--}}
-                {{--</div>--}}
-                {{--<br><br>--}}
-                {{--<div class="comments heading">--}}
-                    {{--<h3>Comments</h3>--}}
-                    {{--<div class="media">--}}
-                        {{--<div class="media-body">--}}
+                <div class="comment-bottom heading">
+                    <h3>Leave a Comment</h3>
+                    <form style="background-color:rgba(185, 185, 82, 0.31);padding:15px;" method="POST"
+                          action="{{route('postAddComment')}}">
+                        <input name="sender_name" type="text" value="Your Name" required="" onfocus="this.value='';"
+                               onblur="if (this.value == '') {this.value ='Your Name';}">
+                        <input name="email" type="text" value="Your Email" required="" onfocus="this.value='';"
+                               onblur="if (this.value == '') {this.value ='Your Email';}">
+                        <textarea name="content" required="" rows="3" value=" " onfocus="this.value='';"
+                                  onblur="if (this.value == '') {this.value = 'Your Comment';}">Your Comment
+                        </textarea>
+                        <input type="hidden" name="post_id" value="{{$post_id}}">
+                        <input type="hidden" name="_token" value="{{Session::token()}}">
+                        <br>
+                        <h5>(Note : Comments will be shown only after they have been checked for inappropriate content)</h5>
+                        <br>
+                        <input class="left" type="submit" value="Send">
+                    </form>
+                </div>
+                <br>
+                <div class="comments heading">
+                    <h3>Comments</h3>
+                    @foreach($comments as $comment)
+                        <div class="media">
+                            <div style="padding: 8px 30px;background-color:rgba(105, 160, 2, 0.22);max-width: 800px">
+                                <div>
+                                    <div style="float: left;">
+                                        <b>{{$comment->sender_name}} @ <span style="color:indianred">{{$comment->email}}</span></b>
+                                    </div>
+                                    <div style="float: right;">
+                                        <h6>on {{$comment->created_at->toFormattedDateString()}}</h6>
+                                    </div>
+                                </div>
+                                <div style="margin-top:30px">
+                                   <h6> {{$comment->content}}</h6>
+                                </div>
+                            </div>
+                            {{--<div class="media-right">--}}
+                            {{--<a href="#">--}}
+                            {{--<img src="images/si.png" alt=""> </a>--}}
+                            {{--</div>--}}
+                        </div>
+                    @endforeach
 
-                        {{--</div>--}}
-                    {{--</div>--}}
-
-                {{--</div>--}}
+                </div>
                 <br>
 
 
